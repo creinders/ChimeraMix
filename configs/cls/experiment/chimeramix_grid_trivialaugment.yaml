@@ -1,0 +1,6 @@
+# @package _global_
+tags:
+  - chimeramix_grid
+  - trivialaugment
+augmentation_trivialaugment: True
+mix: True

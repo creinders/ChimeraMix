@@ -1,0 +1,41 @@
+defaults:
+  - _self_
+  - slurm
+
+hydra:
+  run:
+    dir: tmp/outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: tmp/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+
+dataset: ???
+epochs: 200
+lr: 0.0002
+momentum: 0.9
+wd: 5e-4
+batch_size: 64
+lr_scheduler: 'multi_step_lr'
+
+generator_image_size: null
+generator_features: 64
+generator_blocks: 4
+generator_split: 2
+discriminator_features: 64
+
+noise_interpolation_mode: 'nearest'
+
+max_labels_per_class: 10
+num_dataset_repeats_base: 500
+num_epoch_repetition: 1  # 6, 50
+
+mix_mode: 'grid'  # grid, segmentation
+mix_size: 4
+
+seed: 0
+debug: False
+tags: []
+override: false
+checkpoint: true
+variant: ''
+model_subdir: generator

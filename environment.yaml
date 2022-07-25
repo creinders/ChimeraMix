@@ -1,0 +1,25 @@
+name: chimeramix
+channels:
+  - pytorch
+  - defaults
+  - conda-forge
+dependencies:
+  - black
+  - python=3.8
+  - pip
+  - pylint
+  - rope
+  - torchvision
+  - cudatoolkit=11.3
+  - torchaudio
+  - pytorch
+  - pip:
+      - numpy
+      - matplotlib
+      - Pillow
+      - pytorch_lightning
+      - torchinfo
+      - wandb
+      - hydra-core
+      - hydra-submitit-launcher
+      - scikit-image

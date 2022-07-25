@@ -1,0 +1,6 @@
+# @package _global_
+tags:
+  - chimeramix_segmentation_direct
+mix: True
+mix_mode: segmentation
+mix_direct: True

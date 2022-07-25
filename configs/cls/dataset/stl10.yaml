@@ -1,0 +1,7 @@
+# @package _global_
+dataset: stl10
+num_dataset_repeats_base: 120
+model: resnet50
+batch_size: 16
+lr: 0.0074
+wd: 4.1e-4

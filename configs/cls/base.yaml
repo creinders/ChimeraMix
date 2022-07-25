@@ -1,0 +1,51 @@
+defaults:
+  - _self_
+  - slurm
+
+hydra:
+  run:
+    dir: tmp/outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: tmp/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+dataset: ???
+max_labels_per_class: 10
+num_dataset_repeats_base: 500
+num_epoch_repetition: 1
+
+epochs: 200
+lr: 0.1
+momentum: 0.9
+wd: 5e-4
+batch_size: 128
+
+model: 'wideresnet'  # wideresnet, resnet50
+pretrained: false
+lr_scheduler: 'CosineAnnealingLR'
+
+mix: False
+mix_mode: 'grid'  # grid, segmentation
+mix_size: 4
+mix_direct: false
+mix_variant: ''
+mix_generator_image_size: null
+mix_generator_features: 64
+mix_generator_blocks: 4
+mix_generator_split: 2
+mix_discriminator_features: 64
+
+mix_discriminator_filter_repeats: 1
+
+augmentation_cutout: False
+augmentation_random_erase: False
+augmentation_autoaugment: False
+augmentation_trivialaugment: False
+mixup: False
+
+checkpoint: false
+seed: 0
+debug: false
+tags: []
+override: False
+model_subdir: cls
+model_generator_subdir: generator

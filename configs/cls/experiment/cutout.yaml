@@ -1,0 +1,5 @@
+# @package _global_
+tags:
+  - cutout
+
+augmentation_cutout: true

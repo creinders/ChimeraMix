@@ -1,0 +1,5 @@
+# @package _global_
+tags:
+  - chimeramix_segmentation
+
+mix_mode: segmentation

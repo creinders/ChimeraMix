@@ -1,0 +1,5 @@
+# @package _global_
+tags:
+  - baseline
+  - trivialaugment
+augmentation_trivialaugment: True

@@ -1,0 +1,3 @@
+# @package _global_
+dataset: cifar10
+generator_image_size: 64

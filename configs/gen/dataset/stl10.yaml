@@ -1,0 +1,5 @@
+# @package _global_
+dataset: stl10
+batch_size: 8
+num_dataset_repeats_base: 30
+lr: 0.0002

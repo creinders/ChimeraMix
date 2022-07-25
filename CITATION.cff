@@ -1,0 +1,48 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  ChimeraMix: Image Classification on Small Datasets
+  via Masked Feature Mixing
+message: >-
+  If you use our work, please cite it using the
+  metadata from this file.
+authors:
+  - given-names: Christoph
+    family-names: Reinders
+    email: reinders@tnt.uni-hannover.de
+    affiliation: Leibniz University Hannover
+  - given-names: Frederik
+    family-names: Schubert
+    email: schubert@tnt.uni-hannover.de
+    affiliation: 'Leibniz University Hannover '
+    orcid: ' https://orcid.org/0000-0001-8312-3943'
+  - given-names: Bodo
+    family-names: Rosenhahn
+    email: rosenhahn@tnt.uni-hannover.de
+    affiliation: Leibniz University Hannover
+preferred-citation:
+  type: conference-paper
+  title: "ChimeraMix: Image Classification on Small Datasets via Masked Feature Mixing"
+  collection-title: Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, IJCAI-22
+  collection-type: proceedings
+  pages: 1298--1305
+  year: 2022
+  month: 7
+  doi: 10.24963/ijcai.2022/181
+  url: https://doi.org/10.24963/ijcai.2022/181
+  authors:
+    - given-names: Christoph
+      family-names: Reinders
+      email: reinders@tnt.uni-hannover.de
+      affiliation: Leibniz University Hannover
+    - given-names: Frederik
+      family-names: Schubert
+      email: schubert@tnt.uni-hannover.de
+      affiliation: 'Leibniz University Hannover '
+      orcid: ' https://orcid.org/0000-0001-8312-3943'
+    - given-names: Bodo
+      family-names: Rosenhahn
+      email: rosenhahn@tnt.uni-hannover.de
+      affiliation: Leibniz University Hannover

@@ -1,0 +1,6 @@
+# @package _global_
+tags:
+  - chimeramix_grid
+  - autoaugment
+augmentation_autoaugment: True
+mix: True

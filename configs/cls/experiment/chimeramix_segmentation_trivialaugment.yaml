@@ -1,0 +1,7 @@
+# @package _global_
+tags:
+  - chimeramix_segmentation
+  - trivialaugment
+augmentation_trivialaugment: True
+mix: True
+mix_mode: segmentation

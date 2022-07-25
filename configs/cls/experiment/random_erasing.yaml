@@ -1,0 +1,5 @@
+# @package _global_
+tags:
+  - random_erasing
+
+augmentation_random_erase: true
