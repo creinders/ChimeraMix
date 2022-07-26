@@ -80,7 +80,7 @@ python train_classifier.py +dataset=stl10 +experiment=chimeramix_segmentation ma
 
 ## Experiment Sweeps
 
-To reproduce all experiments on your Slurm cluster, execute the following two commands.
+To reproduce all main experiments on your Slurm cluster, execute the following two commands.
 Replace `<SLURM PARTITION>` with the name of your Slurm partition.
 
 ```bash
