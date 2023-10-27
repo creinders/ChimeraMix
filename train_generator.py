@@ -3,8 +3,8 @@ from typing import Optional
 
 import hydra
 import numpy as np
-import pytorch_lightning as pl
-import pytorch_lightning.callbacks as callbacks
+import lightning.pytorch as pl
+import lightning.pytorch.callbacks as callbacks
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -16,8 +16,8 @@ import torch.utils.data.distributed
 import wandb
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.core import LightningModule
-from pytorch_lightning.loggers import WandbLogger
+from lightning.pytorch.core import LightningModule
+from lightning.pytorch.loggers import WandbLogger
 from torchinfo import summary
 from torchvision.utils import make_grid
 
@@ -176,7 +176,7 @@ class ChimeraMixLightningModel(LightningModule):
     def forward(self, a, b, f):
         return self.generator(a, b, f)
 
-    def on_epoch_start(self) -> None:
+    def on_train_epoch_start(self) -> None:
 
         if self.current_epoch % max(self.params.num_epoch_repetition, 5) == 0:
             self.log_next_train_batch_cls = True
@@ -427,7 +427,7 @@ class ChimeraMixLightningModel(LightningModule):
         ]
 
 
-@hydra.main(config_path="configs/gen", config_name="base", version_base="1.1")
+@hydra.main(config_path="configs/gen", config_name="base", version_base="1.3")
 def main(cfg: DictConfig):
 
     if isinstance(cfg.tags, (list, tuple)):
@@ -487,7 +487,8 @@ def main(cfg: DictConfig):
     trainer = pl.Trainer(
         logger=wandb_logger,
         default_root_dir="tmp/lightning_logs",
-        gpus=1,
+        accelerator="gpu",
+        devices=1,
         max_epochs=cfg.epochs * cfg.num_epoch_repetition,
         check_val_every_n_epoch=cfg.num_epoch_repetition,
         callbacks=trainer_callbacks,

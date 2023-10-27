@@ -1,10 +1,10 @@
-from pytorch_lightning.callbacks import Callback
-from pytorch_lightning.utilities.types import STEP_OUTPUT
+from lightning.pytorch.callbacks import Callback
+from lightning.pytorch.utilities.types import STEP_OUTPUT
 from typing import Any, Dict, List, Optional
 import torch
 import numpy as np
 from copy import deepcopy
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import time
 import datetime
 

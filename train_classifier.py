@@ -4,8 +4,8 @@ import random
 
 import hydra
 import numpy as np
-import pytorch_lightning as pl
-import pytorch_lightning.callbacks as callbacks
+import lightning.pytorch as pl
+import lightning.pytorch.callbacks as callbacks
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -17,8 +17,8 @@ import torch.utils.data.distributed
 import wandb
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.core import LightningModule
-from pytorch_lightning.loggers import WandbLogger
+from lightning.pytorch.core import LightningModule
+from lightning.pytorch.loggers import WandbLogger
 from torchmetrics.classification.accuracy import Accuracy
 from torchmetrics.classification.confusion_matrix import ConfusionMatrix
 from torchvision.models import resnet50
@@ -91,20 +91,20 @@ class ClassifierLightningModel(LightningModule):
 
         self.criterion = nn.CrossEntropyLoss()
 
-        self.train_accuracy = Accuracy()
-        self.train_accuracy_macro = Accuracy(average="macro", num_classes=num_classes)
-        self.train_accuracy_top5 = Accuracy(top_k=5)
-        self.val_accuracy = Accuracy()
-        self.val_accuracy_macro = Accuracy(average="macro", num_classes=num_classes)
-        self.val_accuracy_top5 = Accuracy(top_k=5)
-        self.val_confusion = ConfusionMatrix(num_classes=num_classes)
+        self.train_accuracy = Accuracy(task="multiclass", num_classes=num_classes)
+        self.train_accuracy_macro = Accuracy(task="multiclass", average="macro", num_classes=num_classes)
+        self.train_accuracy_top5 = Accuracy(task="multiclass", top_k=5, num_classes=num_classes)
+        self.val_accuracy = Accuracy(task="multiclass", num_classes=num_classes)
+        self.val_accuracy_macro = Accuracy(task="multiclass", average="macro", num_classes=num_classes)
+        self.val_accuracy_top5 = Accuracy(task="multiclass", top_k=5, num_classes=num_classes)
+        self.val_confusion = ConfusionMatrix(task="multiclass", num_classes=num_classes)
 
         self.normalize_inv = NormalizeInverse(self.mean, self.std)
 
     def forward(self, x):
         return self.model(x)
 
-    def on_epoch_start(self) -> None:
+    def on_train_epoch_start(self) -> None:
 
         if self.current_epoch % 1 == 0:
             self.log_next_batch = True
@@ -347,7 +347,7 @@ class ClassifierLightningModel(LightningModule):
         return [optimizer], [{"scheduler": scheduler, "interval": "step"}]
 
 
-@hydra.main(config_path="configs/cls", config_name="base", version_base="1.1")
+@hydra.main(config_path="configs/cls", config_name="base", version_base="1.3")
 def main(cfg: DictConfig):
 
     cfg.epochs = math.ceil(cfg.epochs)
@@ -402,7 +402,8 @@ def main(cfg: DictConfig):
     trainer = pl.Trainer(
         logger=wandb_logger,
         default_root_dir="tmp/lightning_logs",
-        gpus=1,
+        accelerator="gpu",
+        devices=1,
         max_epochs=cfg.epochs * cfg.num_epoch_repetition,
         check_val_every_n_epoch=cfg.num_epoch_repetition,
         callbacks=trainer_callbacks,

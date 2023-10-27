@@ -1,23 +1,22 @@
 name: chimeramix
 channels:
   - pytorch
+  - nvidia
   - defaults
-  - conda-forge
 dependencies:
   - black
-  - python=3.8
+  - python=3.10
   - pip
   - pylint
   - rope
   - torchvision
-  - cudatoolkit=11.3
-  - torchaudio
   - pytorch
+  - pytorch-cuda=11.8
   - pip:
       - numpy
       - matplotlib
       - Pillow
-      - pytorch_lightning
+      - lightning==1.9
       - torchinfo
       - wandb
       - hydra-core

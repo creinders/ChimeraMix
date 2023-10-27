@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 import torch
-from pytorch_lightning.core import LightningDataModule
+from lightning.pytorch.core import LightningDataModule
 from torch.utils.data.dataset import Dataset
 
 from datasets.pipeline.IndexDataset import IndexDataset
