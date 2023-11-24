@@ -114,8 +114,8 @@ class ClassifierLightningModel(LightningModule):
     def training_step(self, batch, batch_idx):
 
         dict_a, dict_b = batch
-        idx_a, images_a, target_a = dict_a["idx"], dict_a["image"], dict_a["target"]
-        idx_b, images_b, target_b = dict_b["idx"], dict_b["image"], dict_b["target"]
+        idx_a, images_a, target_a = dict_a["idx"], dict_a["image"], dict_a["target"].long()
+        idx_b, images_b, target_b = dict_b["idx"], dict_b["image"], dict_b["target"].long()
         if self.params.mix_mode == "segmentation":
             segmentation_a = dict_a["segmentation"]
             segmentation_b = dict_b["segmentation"]
@@ -291,7 +291,7 @@ class ClassifierLightningModel(LightningModule):
 
     def validation_step(self, batch, batch_idx):
         images = batch["image"]
-        target = batch["target"]
+        target = batch["target"].long()
 
         output = self.model(images)
 
