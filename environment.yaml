@@ -20,5 +20,5 @@ dependencies:
       - torchinfo
       - wandb
       - hydra-core
-      - hydra-submitit-launcher
+      - hydra-slurm-rich-launcher
       - scikit-image
